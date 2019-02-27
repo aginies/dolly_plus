@@ -1,0 +1,364 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Dolly</title>
+<meta name="Microsoft Theme" content="arcs 011">
+</head>
+
+<body background="../../_themes/arcs/arctile.jpg" bgcolor="#FFFFFF" text="#000000" link="#3399FF" vlink="#666666" alink="#FF9900"><!--mstheme--><font face="ＭＳ Ｐゴシック">
+
+<p><font size="7" color="#008000">Dolly+</font></p>
+<p>　<a href="index_J.htm">(Japanese)</a></p>
+<!--mstheme--></font><!--msthemelist--><table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <!--msthemelist--><tr><td valign="baseline" width="42"><img src="../../_themes/arcs/arcbul1a.gif" width="15" height="15" hspace="13"></td><td valign="top" width="100%"><!--mstheme--><font face="ＭＳ Ｐゴシック"><b><u><font size="5">Back Ground</font></u></b><!--mstheme--></font><!--msthemelist--></td></tr>
+<!--msthemelist--></table><!--mstheme--><font face="ＭＳ Ｐゴシック">
+<p>In administrating a large scale PC cluster, installation and updating both of kernel and utility software to whole the system are very troublesome,        
+especially if the numbers of PC exceeds a hundred. In installation, people usually make dead copies of a hard disk image        
+in which software systems are previously installed and then they are distributed among node PCs by CDs or hard disk themselves.<br>        
+Though some software do such a process through networks, they commonly have an performance bottleneck at server where the original image are hold.&nbsp;<br>       
+ A cloning program  `dolly' developed in ETH(Swiss Federal Institute of Technology) avoids such bottleneck by using a "ring" type connection rather than 'hub' type connection among  one server and many        
+clients .<br>       
+I have extended its concept with multi-threading and pipeline technique.<br>        
+It speeds up installation process very much. One-to-ten copying, for example, finishes in almost same minutes for one-to-one copy.&nbsp;<br>       
+In addition, time out sensing 'bypass' mechanism makes the copy process<br>        
+pretty robust in the case of a  client machine trouble. <br>       
+</p>    
+<p align="left"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Original Dolly page is <a href="http://www.cs.inf.ethz.ch/CoPs/patagonia/">here</a>        
+(dolly specific page is <a href="http://www.cs.inf.ethz.ch/CoPs/patagonia/dolly.html">here</a>        
+)</b></p>       
+<!--mstheme--></font><!--msthemelist--><table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <!--msthemelist--><tr><td valign="baseline" width="42"><img src="../../_themes/arcs/arcbul1a.gif" width="15" height="15" hspace="13"></td><td valign="top" width="100%"><!--mstheme--><font face="ＭＳ Ｐゴシック">    
+      <p align="left"><b><u>How different dolly and dolly+<br>    
+      </u></b><!--mstheme--></font><!--msthemelist--></td></tr>
+<!--msthemelist--></table><!--mstheme--><font face="ＭＳ Ｐゴシック">
+<blockquote>    
+<!--mstheme--></font><!--msthemelist--><table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <!--msthemelist--><tr><td valign="top" width="42"><img src="../../_themes/arcs/arcbul1a.gif" width="15" height="15" hspace="13"></td><td valign="top" width="100%"><!--mstheme--><font face="ＭＳ Ｐゴシック">I believe dolly+ is upper compatible of dolly        
+      0.2 in terms of configuration file.<!--mstheme--></font><!--msthemelist--></td></tr> 
+  <!--msthemelist--><tr><td valign="baseline" width="42"><img src="../../_themes/arcs/arcbul1a.gif" width="15" height="15" hspace="13"></td><td valign="top" width="100%"><!--mstheme--><font face="ＭＳ Ｐゴシック">Speed up by using multi threading. (        
+    net-&gt;memory, memory-&gt;disk, memory-&gt;net threads)<!--mstheme--></font><!--msthemelist--></td></tr> 
+  <!--msthemelist--><tr><td valign="baseline" width="42"><img src="../../_themes/arcs/arcbul1a.gif" width="15" height="15" hspace="13"></td><td valign="top" width="100%"><!--mstheme--><font face="ＭＳ Ｐゴシック">multi file transfer.<!--mstheme--></font><!--msthemelist--></td></tr> 
+  <!--msthemelist--><tr><td valign="baseline" width="42"><img src="../../_themes/arcs/arcbul1a.gif" width="15" height="15" hspace="13"></td><td valign="top" width="100%"><!--mstheme--><font face="ＭＳ Ｐゴシック">fail safe mechanism (bypass if a node has        
+    trouble)<!--mstheme--></font><!--msthemelist--></td></tr>
+  <!--msthemelist--><tr><td valign="baseline" width="42"><img src="../../_themes/arcs/arcbul1a.gif" width="15" height="15" hspace="13"></td><td valign="top" width="100%"><!--mstheme--><font face="ＭＳ Ｐゴシック">separate Server (dollyS) which run in the host        
+    having the original file image and Client (dollyC) which run in hosts where        
+    images are cloned.<!--mstheme--></font><!--msthemelist--></td></tr> 
+<!--msthemelist--></table><!--mstheme--><font face="ＭＳ Ｐゴシック">
+</blockquote>    
+<!--mstheme--></font><!--msthemelist--><table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <!--msthemelist--><tr><td valign="baseline" width="42"><img src="../../_themes/arcs/arcbul1a.gif" width="15" height="15" hspace="13"></td><td valign="top" width="100%"><!--mstheme--><font face="ＭＳ Ｐゴシック">Configuration file<!--mstheme--></font><!--msthemelist--></td></tr> 
+<!--msthemelist--></table><!--mstheme--><font face="ＭＳ Ｐゴシック">
+<blockquote>    
+  <p>&nbsp;&nbsp; <u> <font size="3">an example of <font color="#008000">original</font>        
+  dolly configuration file.</font></u></p>       
+</blockquote>    
+<!--mstheme--></font><table border="2" width="87%" height="57" bordercolordark="#CC9966" bordercolorlight="#FFCC66">    
+  <tr>    
+    <td width="51%" height="51" bordercolor="#FF00FF" bordercolorlight="#FF00FF" bordercolordark="#FF00FF" valign="top" align="left"><!--mstheme--><font face="ＭＳ Ｐゴシック">    
+      <p style="word-spacing: 0; margin-top: 0; margin-bottom: 0">infile /dev/sda102&nbsp;        
+      </p>    
+      <p style="word-spacing: 0; margin-top: 0; margin-bottom: 0">outfile /dev/sda103        
+      </p>    
+      <p style="word-spacing: 0; margin-top: 0; margin-bottom: 0">server        
+      cluster-master</p>    
+      <p style="word-spacing: 0; margin-top: 0; margin-bottom: 0">firstclient        
+      node01</p>    
+      <p style="word-spacing: 0; margin-top: 0; margin-bottom: 0">lastclient        
+      node09</p>    
+      <p style="word-spacing: 0; margin-top: 0; margin-bottom: 0">clients 9 </p>       
+      <p style="word-spacing: 0; margin-top: 0; margin-bottom: 0">node01</p>    
+      <p style="word-spacing: 0; margin-top: 0; margin-bottom: 0">node02</p>    
+      <p style="word-spacing: 0; margin-top: 0; margin-bottom: 0">&nbsp; .....</p>       
+      <p style="word-spacing: 0; margin-top: 0; margin-bottom: 0">node09</p>    
+      <p style="word-spacing: 0; margin-top: 0; margin-bottom: 0">endconfig<!--mstheme--></font></td>    
+  <td width="95%" height="51" bordercolor="#FFFFFF" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" valign="top" align="left"><!--mstheme--><font face="ＭＳ Ｐゴシック">    
+    <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">&lt;-        
+    input file name (in server)</p>       
+    <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">&lt;-        
+    output filename (in client)</p>       
+    <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">&lt;-        
+    the name of server</p>       
+    <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">&lt;-        
+    the name of the 1st client</p>       
+    <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">&lt;-        
+    the name of the last client</p>       
+    <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">&lt;-        
+    # of clients</p>       
+    <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">&lt;-        
+    names of the clients</p>       
+    <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">　</p>
+    <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">　</p>
+    <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">　</p>
+    <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">&lt;-        
+    keywordk for the endof config. file<!--mstheme--></font></td>       
+</tr>    
+</table><!--mstheme--><font face="ＭＳ Ｐゴシック">    
+<p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">　</p>
+<blockquote>
+  <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">dolly+        
+  accept the same format of the dolly's configuration file. That is upper        
+  compatible. But also have some additional syntax. this is an example of <u>dolly+        
+  specific configuration file.</u></p>    
+</blockquote>    
+<p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">　</p>
+<!--mstheme--></font><table border="2" width="93%" height="57" bordercolordark="#CC9966" bordercolorlight="#FFCC66">
+  <tr>
+    <td width="57%" height="51" bordercolor="#FF00FF" bordercolorlight="#FF00FF" bordercolordark="#FF00FF" valign="top" align="left"><!--mstheme--><font face="ＭＳ Ｐゴシック">
+      <p style="word-spacing: 0; margin-top: 0; margin-bottom: 0">iofiles 3</p>       
+      <p style="word-spacing: 0; margin-top: 0; margin-bottom: 0">/dev/hda1 &gt;        
+      /tmp/dev/hda1</p>    
+      <p style="word-spacing: 0; margin-top: 0; margin-bottom: 0">/data/file.gz&nbsp;        
+      &gt;&gt; /data/file</p>       
+      <p style="word-spacing: 0; margin-top: 0; margin-bottom: 0">boot.tar.Z        
+      &gt;&gt; /boot&nbsp; </p>       
+      <p style="word-spacing: 0; margin-top: 0; margin-bottom: 0">server        
+      cluster-master</p>    
+      <p style="word-spacing: 0; margin-top: 0; margin-bottom: 0">firstclient        
+      node01</p>    
+      <p style="word-spacing: 0; margin-top: 0; margin-bottom: 0">lastclient        
+      node09</p>    
+      <p style="word-spacing: 0; margin-top: 0; margin-bottom: 0">clients 9</p>       
+      <p style="word-spacing: 0; margin-top: 0; margin-bottom: 0">node01</p>    
+      <p style="word-spacing: 0; margin-top: 0; margin-bottom: 0">node02</p>    
+      <p style="word-spacing: 0; margin-top: 0; margin-bottom: 0">&nbsp; .....</p>       
+      <p style="word-spacing: 0; margin-top: 0; margin-bottom: 0">node09</p>    
+      <p style="word-spacing: 0; margin-top: 0; margin-bottom: 0">endconfig<!--mstheme--></font></td>    
+  <td width="89%" height="51" bordercolor="#FFFFFF" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" valign="top" align="left"><!--mstheme--><font face="ＭＳ Ｐゴシック">    
+    <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">&lt;-        
+    # of images for transfer</p>       
+    <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">&lt;-        
+    *1</p>    
+    <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">&lt;-        
+    *2</p>    
+    <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">&lt;-        
+    *3</p>    
+    <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">&lt;-        
+    the name of server</p>       
+    <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">&lt;-        
+    dolly+ does not care, but must exist </p>       
+    <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">&lt;-        
+    dolly+ does not care, but must exist</p>       
+    <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">　</p>  
+    <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">&lt;-        
+    names of the clients</p>       
+    <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">　</p>
+    <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">　</p>
+    <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">　</p>
+    <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">　</p>
+    <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">&lt;-        
+    end code<!--mstheme--></font></td>       
+</tr>    
+</table><!--mstheme--><font face="ＭＳ Ｐゴシック">    
+<blockquote>    
+  <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">*1:&nbsp;&nbsp;        
+  input file in the server is /dev/hda1 and output file in clients.<br>       
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '&gt;' means dolly+ does not modify the        
+  image.</p>    
+  <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">*2:&nbsp;&nbsp;        
+  input file is /data/file.gz and output file is /data/file</p>       
+  <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        
+  '&gt;&gt;' indicate dolly+ should cook the file according to the name of the        
+  file.<br>    
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Now.&nbsp; '.tar.', '.gz', 'tar.gz','tar.Z','cpio','cpio.gz','cpio.Z'        
+  are supported.</p>       
+  <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">*3:&nbsp;&nbsp;        
+  input file is ./boot.tar.Z and output working directory is /boot.<br>       
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; the right argument of '&gt;&gt;' in cases where        
+  the input name is 'tar' and 'cpio' should be a directory name.</p>       
+</blockquote>    
+<p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">　</p>
+<!--mstheme--></font><!--msthemelist--><table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <!--msthemelist--><tr><td valign="baseline" width="42"><img src="../../_themes/arcs/arcbul1a.gif" width="15" height="15" hspace="13"></td><td valign="top" width="100%"><!--mstheme--><font face="ＭＳ Ｐゴシック">
+      <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left"><b><u><font size="5">Source        
+      code</font> </u></b><!--mstheme--></font><!--msthemelist--></td></tr>
+<!--msthemelist--></table><!--mstheme--><font face="ＭＳ Ｐゴシック">
+<p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">　</p>
+<blockquote>
+  <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">this        
+  version of dolly+ is just tested on RedHat 6.1, 6.2, 7.1 and 7.2 with multi thread        
+  library. But take <a href="dolly0_93.tar.gz">one</a>(ver.0.93)        
+  please.</p>    
+  <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left"><b><font color="#FF0000" size="5">caution!!   
+  version 0.91 has very small (4 chars) but very serious bug. please take new   
+  one, if you have old one!!</font></b></p>    
+  <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">　</p>   
+</blockquote>   
+<!--mstheme--></font><!--msthemelist--><table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <!--msthemelist--><tr><td valign="baseline" width="42"><img src="../../_themes/arcs/arcbul1a.gif" width="15" height="15" hspace="13"></td><td valign="top" width="100%"><!--mstheme--><font face="ＭＳ Ｐゴシック">
+    <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left"><b><font size="5"><u>CVS 
+    repository</u></font></b><!--mstheme--></font><!--msthemelist--></td></tr>
+<!--msthemelist--></table><!--mstheme--><font face="ＭＳ Ｐゴシック">
+<p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">　</p>
+<blockquote>
+  <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">From 
+  March, 2002, we started to use view CVS for `open'&nbsp; code management of 
+  dolly+. You can get the newest version of the software by the following 
+  procedure;</p>   
+  <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">　</p>   
+  <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">cvs login&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  (please do only once)<br>
+  % cvs -d :pserver:anonymous@plateau.is.titech.ac.jp:/var/lib/cvs login<br> 
+  CVS password: [CR]&nbsp;&nbsp;&nbsp;&nbsp; ( just type CR only)<br>
+  <br>
+  checkout<br>
+  % cvs -d :pserver:anonymous@plateau.is.titech.ac.jp:/var/lib/cvs checkout dolly&nbsp;<br>
+  <br>
+  We welcome for you to join the development. If you want join us, please send a 
+  mail to &lt;<a href="mailto:takamiya@matsulab.is.titech.ac.jp">takamiya@matsulab.is.titech.ac.jp</a>&gt; 
+  with your account name and password ( encrypted by UNIX /etc/passwd 
+  format).&nbsp; In the case,&nbsp; `cvsroot' is&nbsp;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :pserver:&lt;your_account_name&gt;@plateau.is.titech.ac.jp:/var/lib/cvs</p>   
+  <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">&nbsp;</p>   
+</blockquote>   
+<!--mstheme--></font><!--msthemelist--><table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <!--msthemelist--><tr><td valign="baseline" width="42"><img src="../../_themes/arcs/arcbul1a.gif" width="15" height="15" hspace="13"></td><td valign="top" width="100%"><!--mstheme--><font face="ＭＳ Ｐゴシック">
+      <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">Binary        
+      code<!--mstheme--></font><!--msthemelist--></td></tr>
+<!--msthemelist--></table><!--mstheme--><font face="ＭＳ Ｐゴシック">
+<p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">　</p>
+<blockquote>
+  <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">This        
+  binary was made in RedHat 6.1 with static link. So I believe it works in many        
+  linux machines. Please take <a href="http://corvus.kek.jp/~manabe/pcf/dolly/dolly+_bin_0.92.tar.gz">one</a> 
+  if you want to try.</p>    
+</blockquote>  
+<p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">　</p>
+<!--mstheme--></font><!--msthemelist--><table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <!--msthemelist--><tr><td valign="baseline" width="42"><img src="../../_themes/arcs/arcbul1a.gif" width="15" height="15" hspace="13"></td><td valign="top" width="100%"><!--mstheme--><font face="ＭＳ Ｐゴシック">
+      <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left"><b><u><font size="5">How        
+      to run dolly +</font></u></b><!--mstheme--></font><!--msthemelist--></td></tr> 
+<!--msthemelist--></table><!--mstheme--><font face="ＭＳ Ｐゴシック">
+<p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left"><font size="5">　</font></p>
+<blockquote>
+  <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">In        
+  server side&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; % dollyS -vf&nbsp;        
+  'configuration-file'</p>    
+  <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">In        
+  client side&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; % dollyC -v </p>       
+  <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">(%        
+  is just a OS prompt)&nbsp; </p>       
+  <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">　</p>
+</blockquote>
+<!--mstheme--></font><!--msthemelist--><table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <!--msthemelist--><tr><td valign="baseline" width="42"><img src="../../_themes/arcs/arcbul1a.gif" width="15" height="15" hspace="13"></td><td valign="top" width="100%"><!--mstheme--><font face="ＭＳ Ｐゴシック">
+      <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left"><u><i>I        
+      said that dolly+ is used for OS installation and upgrading, How to run        
+      dolly+ before an OS is installed.</i></u><!--mstheme--></font><!--msthemelist--></td></tr> 
+<!--msthemelist--></table><!--mstheme--><font face="ＭＳ Ｐゴシック">
+<p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">　</p>
+<blockquote>
+  <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">We        
+  use a modified RedHat kickstart for the purpose, I am preparing the pages        
+  explain about that please wait.</p>       
+  <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">　</p>
+</blockquote>
+<!--mstheme--></font><!--msthemelist--><table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <!--msthemelist--><tr><td valign="baseline" width="42"><img src="../../_themes/arcs/arcbul1a.gif" width="15" height="15" hspace="13"></td><td valign="top" width="100%"><!--mstheme--><font face="ＭＳ Ｐゴシック">
+      <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">Bugs<!--mstheme--></font><!--msthemelist--></td></tr>
+<!--msthemelist--></table><!--mstheme--><font face="ＭＳ Ｐゴシック">
+<p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">　</p>
+<blockquote>
+  <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">Please        
+  mail me any kinds of bug reports. mail address is <a href="mailto:manabe@corvus.kek.jp">manabe@corvus.kek.jp</a></p>       
+  <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">　</p>    
+</blockquote>
+<!--mstheme--></font><!--msthemelist--><table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <!--msthemelist--><tr><td valign="baseline" width="42"><img src="../../_themes/arcs/arcbul1a.gif" width="15" height="15" hspace="13"></td><td valign="top" width="100%"><!--mstheme--><font face="ＭＳ Ｐゴシック">
+    <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left"><b><font size="5">Mailing   
+    List</font></b><!--mstheme--></font><!--msthemelist--></td></tr>
+<!--msthemelist--></table><!--mstheme--><font face="ＭＳ Ｐゴシック">
+<blockquote>
+  <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">　</p>
+  <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">To   
+  discuss and exchange information about dolly+, we prepare a mailing list. Any   
+  comments , questions and suggestions are very welcomed.<br>  
+  <br>
+  Title:&nbsp;&nbsp; dolly+ ML &lt;dolly@matsulab.is.titech.ac.jp><br>   
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A mailing list to discuss dolly+   
+  development.<br>
+  <br>
+  </p>
+  <!--mstheme--></font><!--msthemelist--><table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <!--msthemelist--><tr><td valign="top" width="42"><img src="../../_themes/arcs/arcbul1a.gif" width="15" height="15" hspace="13"></td><td valign="top" width="100%"><!--mstheme--><font face="ＭＳ Ｐゴシック">
+      <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">To   
+      join the list, please make a mail including&nbsp; lines as;<br>  
+      <br>
+      </p>
+      <!--mstheme--></font><table border="1" width="70%" bordercolordark="#CC9966" bordercolorlight="#FFCC66">
+        <tr>
+          <td width="100%"><!--mstheme--><font face="ＭＳ Ｐゴシック">subscribe YOUR_NAME (NOT your E-mail address)<!--mstheme--></font></td>  
+        </tr>
+      </table><!--mstheme--><font face="ＭＳ Ｐゴシック">
+    <!--mstheme--></font><!--msthemelist--></td></tr>
+  <!--msthemelist--></table><!--mstheme--><font face="ＭＳ Ｐゴシック">
+  <blockquote>
+    <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left"><br>
+    <br>
+    and send it to &lt;<a href="mailto:dolly-ctl@matsulab.is.titech.ac.jp">dolly-ctl@matsulab.is.titech.ac.jp</a>&gt;.   
+    A confirmation mail will be replied. Please make your registration as an   
+    instruction in the replied mail. Registration is done automatically by a   
+    robotic mailing list server.&nbsp;&nbsp;<br>  
+    <br>
+    example:<br>
+ subscribe Yasuhito TAKAMIYA</p>   
+    <!--mstheme--></font><!--msthemelist--><table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <!--msthemelist--><tr><td valign="top" width="42"><img src="../../_themes/arcs/arcbul1a.gif" width="15" height="15" hspace="13"></td><td valign="top" width="100%"><!--mstheme--><font face="ＭＳ Ｐゴシック">
+        <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">To   
+        unsubscribe from the mailing list, please send a mail to <a href="mailto:%3cdolly-ctl@matsulab.is.titech.ac.jp%3ei">&lt;dolly-ctl@matsulab.is.titech.ac.jp&gt;   
+        </a>including the bellow lines as its mail contents,<br>  
+      <!--mstheme--></font><!--msthemelist--></td></tr>
+    <!--msthemelist--></table><!--mstheme--><font face="ＭＳ Ｐゴシック">
+    <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">　</p>
+    <!--mstheme--></font><table border="1" width="457" height="28" bordercolordark="#CC9966" bordercolorlight="#FFCC66">
+      <tr>
+        <td width="457" height="28"><!--mstheme--><font face="ＭＳ Ｐゴシック"> unsubscribe<br>
+ end<!--mstheme--></font></td>
+      </tr>
+    </table><!--mstheme--><font face="ＭＳ Ｐゴシック">
+  </blockquote>
+</blockquote>
+<!--mstheme--></font><!--msthemelist--><table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <!--msthemelist--><tr><td valign="baseline" width="42"><img src="../../_themes/arcs/arcbul1a.gif" width="15" height="15" hspace="13"></td><td valign="top" width="100%"><!--mstheme--><font face="ＭＳ Ｐゴシック">
+    <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left"><font size="5">Presentations</font><!--mstheme--></font><!--msthemelist--></td></tr>
+<!--msthemelist--></table><!--mstheme--><font face="ＭＳ Ｐゴシック">
+<blockquote>
+  <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">　</p>
+  <p style="text-indent: 0; word-spacing: 0; line-height: 100%; margin: 0" align="left">A       
+<a href="dolly.ppt">presentation</a> in 'Computer in High Energy Physics 2001 in       
+Begin'</p>
+</blockquote>
+   <h2>Change Log</h2>
+ <dl>
+  <dt>12/9/2003 contribution by S.Takizawa</dt>
+  <dd>
+   <div><p>
+    When '#' appears in a lines of configuration file, then parser recognize the following  as comments.
+   </p></div>
+   <div><p>
+    Port numbers used in the previous version were fixed ones. Now you can select port numbers by using dolly+'s 
+    command argument options.</p>
+    <table border=1 align="center" width=60%>
+     <tr>
+      <th>option</th><th width=65%>comment</th>
+     </tr>
+     <tr>
+      <td>--dataport <i>portnum</i></td><td width=65%>'<i>portnum</i>' number port is used for transration. dataport default is 9998.</td>
+     </tr>
+     <tr>
+      <td>--cntlport <i>portnum</i></td><td width=65%>'<i>portnum</i>' number port is used for control. cntlport default is 9997.</td>
+     </tr>
+     <tr>
+      <td>--report <i>portnum</i></td><td width=65%>'<i>portnum</i>' number port is used in Ping mode. report default is 9996.</td>
+     </tr>
+     <tr>
+      <td>-P <i>portnum</i></td><td width=65%>report is set as '<i>portnum</i>', cntlport is set as '<i>portnum</i>'+1, dataport is set as '<i>portnum</i>'+2.</td>
+    </table></div>
+  </dd>
+ </dl>
+
+<!--mstheme--></font></body>   
+   
+</html>   
