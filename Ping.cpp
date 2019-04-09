@@ -59,7 +59,7 @@ void usage(char * progname)
 //***************
 // MAIN routine *
 //***************
-main(int argc, char** argv)
+int main(int argc, char** argv)
 {
   char * pingfile;
   char * hostname;
@@ -124,12 +124,14 @@ main(int argc, char** argv)
     Buffer *buff = new Buffer();
     DataPacket *pack = new DataPacket();
     const char * address;
+    char *dummy;
     int len,ii;
 
     pack->attach(buff);    
     filelist->init(1);
     len = strlen(pingfile);
-    filelist->push("dummy",5,pingfile, len, (unsigned char)0);
+    dummy = new char[len+1];
+    filelist->push(dummy,5,pingfile, len, (unsigned char)0);
     filelist->packetfill(filepacket);
     if (repout->open_connect()!=Net::SUCCESS) {
       fprintf(stderr,"connect to %s (port=%d) fail.\n",hostname,REPORT);
