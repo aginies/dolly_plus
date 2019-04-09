@@ -79,7 +79,7 @@ class ListIte {
   unsigned char get_flag() const{
     return (listObj->itemList[itemNo])->flag ; }
   int set_flag(unsigned char ffff) {
-    (listObj->itemList[itemNo])->flag = ffff ; }
+    return (listObj->itemList[itemNo])->flag = ffff ; }
   void all_print() { listObj->print(); }
  private:
   List *listObj;

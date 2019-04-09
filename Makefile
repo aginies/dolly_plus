@@ -1,3 +1,4 @@
+VERSION=0.94
 CXXFLAGS = -g
 HEADERS = Buffer.h Disk.h Net.h Server.h buffer.h configfile.h packet.h \
 Config.h List.h Packet.h StopWatch.h common.h net.h
@@ -62,3 +63,7 @@ linstall : dollyS dollyC
 	ls -l dollyC
 	scp dollyC dollyS dcpcf002:/distr71/dolly/bin
 
+tarball:
+		mkdir -p ../dolly_plus-${VERSION}
+	    cp -a * ../dolly_plus-${VERSION}
+		cd .. && tar cvfj dolly_plus-${VERSION}.tar.bz2 dolly_plus-${VERSION}

@@ -116,7 +116,7 @@ class FileNoPacket : public Packet {
   virtual ~FileNoPacket() {}
   char *make(short int dummy1, short int fileno);
   char *checkheader_make();
-  int checktrailer() { return 0; }
+  int checktrailer() { return; }
   int set_fileno(short int fileno) ;
   short int get_fileno() { return fileNo; }
  private:
@@ -137,7 +137,7 @@ class CmdPacket : public Packet {
   char *make_command(int type, long int operand);
   char *make_command(int type, char *message, int size);
   char *checkheader_make();
-  virtual int checktrailer() { return 0; }
+  virtual int checktrailer() { return; }
   int get_type() { return pType; }
   long int get_operand();
   char *get_message();
@@ -162,7 +162,7 @@ class PacketIte {
   unsigned char get_flag() {return *(unsigned char *)packP;  }
   void set_flag(unsigned char flag) { *(unsigned char*)packP=flag; }
   char * get_name();
-  int get_name_len() { name_len_check()-1; return 0; } // length without '\0'
+  int get_name_len() { name_len_check()-1; return; } // length without '\0'
   int get_noentry() { return packObj->numEntry; }
   void all_print() { packObj->print(); }
  private:
@@ -198,7 +198,7 @@ class DataPacket: public SPacket {
   ~DataPacket() {}
   char * checkheader_make();
   char * make(short int dummy1, short int dummy2);
-  int checktrailer() { return 0; }
+  int checktrailer() { return; }
 };
 
 #endif
