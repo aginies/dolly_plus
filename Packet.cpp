@@ -465,6 +465,7 @@ int PacketIte::search_flag(unsigned char ffff)
       return 0;
     }
   }
+  return 0;
 }
 
 //
