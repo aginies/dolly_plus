@@ -293,10 +293,13 @@ int Config::set_servername(char * name, int length) {
 int Config::check_filename(char *out_filename, int len) {
       int flag;
 
-      if (strncmp(&out_filename[len-8], ".cpio.gz", 8) == 0) {
+      if (strncmp(&out_filename[len-10], ".cpio.gz", 10) == 0) {
 	flag = FLAG_CPIO|FLAG_GZ;
+        if (flag_v) printf("TAR and BZIP2 flag=0%o \n",flag);
+      } else if (strncmp(&out_filename[len-9], ".tar.bz2", 9) == 0) {
+	flag = FLAG_TAR|FLAG_BZIP2 ;
         if (flag_v) printf("CPIO and GZ flag=0%o \n",flag);
-      } else if (strncmp(&out_filename[len-7], ".cpio.Z", 7) == 0) {
+      } else if (strncmp(&out_filename[len-8], ".cpio.Z", 8) == 0) {
 	flag = FLAG_CPIO|FLAG_Z ;
         if (flag_v) printf("CPIO and Z flag=0%o \n",flag);
       } else if (strncmp(&out_filename[len-7], ".tar.gz", 7) == 0) {

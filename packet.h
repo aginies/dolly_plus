@@ -21,6 +21,7 @@
 
   /*File flag*/
   #define MASK_COMPRESS 03
+  #define FLAG_BZIP2    05
   #define FLAG_GZ       01
   #define FLAG_Z        02
   #define MASK_ARCHIVE 014
