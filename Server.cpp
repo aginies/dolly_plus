@@ -264,7 +264,7 @@ void usage(char * progname)
 //***************
 int main(int argc, char** argv)
 {
-  char * configfile; //="dolly.tab";
+  char * configfile=""; //="dolly.tab";
   int c;
   
   programName=argv[0];
