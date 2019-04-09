@@ -13,9 +13,9 @@ class Buffer {
   int get_seqno() {return seqNo;}
   void clear_seqno() {seqNo=0;}
   void set_seqno(int no) {seqNo=no;}
-  void set_fileno(int no) {fileNo=no;}
+  int set_fileno(int no) {fileNo=no;}
   int get_fileno() {return fileNo;}
-  void set_eof(enum Bstatus eee) { eoF=eee;}
+  int set_eof(enum Bstatus eee) { eoF=eee;}
   enum Bstatus get_eof() {return eoF;}
   int get_size() {return buffBytes;} //return Buffer space size
   int get_contsize() {return contBytes;}
